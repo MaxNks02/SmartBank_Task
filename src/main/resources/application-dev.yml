@@ -1,0 +1,29 @@
+server:
+  port: 9091
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/smart_task
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: 5771199m
+  jpa:
+    open-in-view: false
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        format_sql: true
+        enable_lazy_load_no_trans: true
+  servlet:
+    multipart:
+      enabled: true
+      max-request-size: 500000KB
+      max-file-size: 500000KB
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

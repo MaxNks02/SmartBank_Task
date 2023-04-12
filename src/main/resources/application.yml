@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: Smart_Task
+  profiles:
+    active: dev
