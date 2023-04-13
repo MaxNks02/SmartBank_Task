@@ -1,7 +1,9 @@
 package com.example.smartbank_task.controller;
 
 import com.example.smartbank_task.dao.dto.CityDto;
+import com.example.smartbank_task.exeption.handling.ResponseHandler;
 import com.example.smartbank_task.service.CityService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,17 +22,17 @@ public class CityController extends BaseController<CityService> {
 
 
     @PostMapping(value = "/sortByName", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<List<CityDto>> sortByName(@RequestPart("files") MultipartFile multipartFile) throws IOException {
-        return ResponseEntity.ok(service.sortByName(multipartFile));
+    public ResponseEntity<?> sortByName(@RequestPart("files") MultipartFile multipartFile) throws IOException {
+        return ResponseHandler.generateResponse("Sorted By name", HttpStatus.OK, service.sortByName(multipartFile));
     }
 
     @PostMapping(value = "/sortByNumber", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<List<CityDto>> sortByNumber(@RequestParam("files") MultipartFile multipartFile) throws IOException {
-        return ResponseEntity.ok(service.sortByNumber(multipartFile));
+    public ResponseEntity<?> sortByNumber(@RequestParam("files") MultipartFile multipartFile) throws IOException {
+        return ResponseHandler.generateResponse("Sorted By Code", HttpStatus.OK, service.sortByNumber(multipartFile));
     }
 
     @PostMapping(value = "/saveAll", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<String> saveAll(@RequestParam("files") MultipartFile multipartFile) throws IOException {
-        return ResponseEntity.ok(service.saveAll(multipartFile));
+    public ResponseEntity<?> saveAll(@RequestParam("files") MultipartFile multipartFile) throws IOException {
+        return ResponseHandler.generateResponse("All data saved", HttpStatus.OK, service.saveAll(multipartFile));
     }
 }
